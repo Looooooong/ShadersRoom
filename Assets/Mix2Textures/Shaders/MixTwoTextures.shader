@@ -42,7 +42,7 @@
 			v2f vert (appdata v)
 			{
 				v2f o;
-				o.localPos = v.vertex.xy + float2(0.5,0.5);  //i.vertex 范围在（-0.5，0.5）之间,加上0.5取值到0-1
+				o.localPos = v.vertex.xy + float2(0.5,0.5);  //v.vertex 范围在（-0.5，0.5）之间,加上0.5取值到0-1
 				o.vertex = UnityObjectToClipPos(v.vertex);
 				o.uv1 = TRANSFORM_TEX(v.uv, _MainTex);
 				o.uv2= TRANSFORM_TEX(v.uv, _SecondTex);
@@ -58,7 +58,7 @@
 					fixed mixFactor = 1 - (distanceFrontMixPoint + 0.2)/0.4;
 					return lerp(tex2D(_MainTex, i.uv1),tex2D(_SecondTex,i.uv2),mixFactor);
 				}
-
+				
 				if(i.localPos.x < _TextureMix)
 				{
 					return tex2D(_MainTex, i.uv1);
@@ -67,6 +67,7 @@
 				{
 					return tex2D(_SecondTex,i.uv2);
 				}
+
 			}
 			ENDCG
 		}

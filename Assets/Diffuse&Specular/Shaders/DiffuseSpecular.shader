@@ -55,7 +55,7 @@
 			
 				fixed3 ambient = UNITY_LIGHTMODEL_AMBIENT.rgb;		//UNITY_LIGHTMODEL_AMBIENT 取得系统的环境光
 				
-				fixed3 texcolor = tex2D(_MainTexture,f.uv) * _MainColor; 	//取得图片的纹理贴图颜色同时融合主颜色
+				fixed3 texcolor = tex2D(_MainTexture,f.uv) * _MainColor + ambient; 	//取得图片的纹理贴图颜色同时融合主颜色
 
 				fixed3 normalDir = normalize(f.worldNormal);	//归一化法线向量
 
@@ -71,7 +71,7 @@
 				//计算高光反射Blinn Phong模型 Specular = 直射光  * pow( max(cosθ,0),10)  θ:是法线和x的夹角  x 是平行光和视野方向的平分线
 				fixed3 specular = _LightColor0.rgb * _Specular * pow(max(dot(normalDir,halfDir),0),_Gloss);
 
-				fixed3 tempColor = diffuse + specular + ambient ;//漫反射和高光叠加成最终颜色返回
+				fixed3 tempColor = diffuse + specular  ;//漫反射和高光叠加成最终颜色返回
 
 				return fixed4(tempColor,1);
 			}
