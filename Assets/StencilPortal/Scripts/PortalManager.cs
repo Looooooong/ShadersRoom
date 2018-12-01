@@ -5,17 +5,18 @@ using UnityEngine.Rendering;
 
 public class PortalManager : MonoBehaviour {
 
-    public GameObject mainCamera;
+    public GameObject mainCamera;   //主摄像机
+        
+    public Material portalMat;      //门的材质球
 
-    public Material portalMat;
+    public Material scene1Mat;      //黑色场景的材质球
 
-    public Material scene1Mat;
-
-    public Material scene2Mat;
+    public Material scene2Mat;      //蓝色场景的材质球
 
 
     private void Update()
     {
+        //计算 摄像机与门的相对位置
         Vector3 cameraPostionInPortalSpace = transform.InverseTransformPoint(mainCamera.transform.position);
 
         if(cameraPostionInPortalSpace.z < -0.3) //表示在scene2这边
@@ -36,7 +37,4 @@ public class PortalManager : MonoBehaviour {
             scene1Mat.SetInt("_RefValue", (int)CompareFunction.Always);
         }
     }
-
-
-
 }

@@ -4,23 +4,23 @@
 		_MainTex ("Albedo (RGB)", 2D) = "white" {}
 		_Glossiness ("Smoothness", Range(0,1)) = 0.5
 		_Metallic ("Metallic", Range(0,1)) = 0.0
+
 		_RefValue("Ref",range(0,255)) = 0
 		[Enum(UnityEngine.Rendering.CompareFunction)]_StencilComp("Stencil Comp",float) = 3
 	}
 	SubShader {
 		Tags { "RenderType"="Opaque" }
 		LOD 200
-		ztest less
-		zwrite off
-		cull off
-		colormask 0
+		Zwrite off
+		Cull off
+		Colormask 0
 
 
 		stencil
 		{
-			ref [_RefValue]
-			comp [_StencilComp]
-			pass replace
+			Ref [_RefValue]
+			Comp [_StencilComp]
+			Pass replace
 		}
 
 		CGPROGRAM
